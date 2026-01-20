@@ -361,14 +361,6 @@ npm test -- --watch
    - Protección contra fuerza bruta
    - Throttling de requests
 
-### Variables Sensibles
-
-**NUNCA** commitear al repositorio:
-- Claves secretas JWT
-- Credenciales de base de datos
-- Tokens de dispositivos
-- URLs de producción con credenciales
-
 ---
 
 ## Licencia
