@@ -1,0 +1,676 @@
+/* filepath: c:\Users\Martin\Desktop\proyecto juani\Frontend\proyecto-pizzas\src\components\Carrusel\Carrusel.css */
+
+/* ✅ IMPORTANTE: Todos los estilos con .carrusel-container como prefijo */
+.carrusel-container {
+  height: 100vh;
+  height: 100dvh;
+  max-height: 100vh;
+  max-height: 100dvh;
+  overflow: hidden;
+  background: linear-gradient(180deg, #f9e4b7 0%, #fef4db 100%);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Nunito', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    sans-serif;
+  box-sizing: border-box;
+}
+
+.carrusel-container *,
+.carrusel-container *::before,
+.carrusel-container *::after {
+  box-sizing: border-box;
+}
+
+/* Header estilo menú */
+.carrusel-container .carrusel-header {
+  width: 100%;
+  background: linear-gradient(135deg, #b43832 0%, #8b2e29 100%);
+  padding: clamp(0.5rem, 1.5vh, 1rem) 2rem;
+  box-shadow: 0 4px 12px rgba(180, 56, 50, 0.25);
+  margin-bottom: clamp(0.5rem, 1vh, 1rem);
+  flex-shrink: 0;
+}
+
+.carrusel-container .header-content {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center; /* ✅ Centrar todo */
+  align-items: center;
+  gap: 1rem;
+  position: relative; /* ✅ Para posicionar botones absolutos */
+}
+
+.carrusel-container .header-titulo {
+  flex: none; /* ✅ Cambiar de flex: 1 a flex: none */
+  text-align: center; /* ✅ Centrar texto */
+}
+
+/* Botones de admin en el header - POSICIÓN ABSOLUTA */
+.carrusel-container .header-admin-buttons {
+  position: absolute; /* ✅ Sacar del flujo normal */
+  right: 2rem; /* ✅ Posicionar a la derecha */
+  top: 50%;
+  transform: translateY(-50%); /* ✅ Centrar verticalmente */
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex-shrink: 0;
+  align-items: flex-end;
+}
+
+.carrusel-container .header-admin-buttons .btn-volver-admin {
+  background: #111;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.carrusel-container .header-admin-buttons .btn-volver-admin:hover {
+  background: #000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.carrusel-container .header-admin-buttons .toggle-panel-btn {
+  background: #111;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.carrusel-container .header-admin-buttons .toggle-panel-btn:hover {
+  background: #000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.carrusel-container .local-nombre {
+  color: #ffffff;
+  font-size: clamp(1.4rem, 3vw, 2.2rem);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  margin: 0 0 0.15rem 0;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.carrusel-container .local-subtitulo {
+  color: #ffe8b3;
+  font-size: clamp(0.75rem, 1.5vw, 1rem);
+  font-weight: 400;
+  margin: 0;
+  letter-spacing: 0.05em;
+}
+
+.carrusel-container .carrusel-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: min(1600px, 90vw); /* ✅ Máximo entre 1600px o 90% del viewport */
+  padding: clamp(1rem, 1.5vw, 2rem);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  margin: 0 auto; /* ✅ Centrar horizontalmente */
+}
+
+.carrusel-container .carrusel-content {
+  position: relative;
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  max-height: calc(100vh - 200px); /* ✅ Limitar altura máxima */
+}
+
+.carrusel-container .carrusel-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.carrusel-container .carrusel-slide.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ✅ Layout horizontal: info izquierda + imagen derecha */
+.carrusel-container .producto-card {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  background: #ffffff;
+}
+
+/* ✅ Columna izquierda: info del producto (35%) */
+.carrusel-container .producto-info {
+  width: 35%;
+  padding: 3rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.5rem;
+  background: linear-gradient(135deg, #fef9f0 0%, #fff5e6 100%);
+  border-right: 4px solid #b43832;
+}
+
+.carrusel-container .producto-categoria {
+  display: inline-block;
+  width: fit-content;
+  background: #b43832;
+  color: #fff;
+  padding: 0.6rem 1.5rem;
+  border-radius: 25px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  box-shadow: 0 4px 12px rgba(180, 56, 50, 0.3);
+}
+
+.carrusel-container .producto-nombre {
+  font-size: 2.8rem;
+  color: #5a2d1a;
+  margin: 0;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+}
+
+.carrusel-container .producto-descripcion {
+  color: #7b4c2b;
+  font-size: 2rem;
+  line-height: 1.6;
+  margin: 0;
+  display: block; /* ✅ Forzar que se muestre */
+  visibility: visible; /* ✅ Forzar visibilidad */
+}
+
+.carrusel-container .producto-precio {
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: #b43832;
+  margin-top: auto;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  display: block; /* ✅ Forzar que se muestre */
+  visibility: visible; /* ✅ Forzar visibilidad */
+}
+
+/* ✅ Columna derecha: imagen (65%) */
+.carrusel-container .producto-imagen-container {
+  width: 65%;
+  overflow: hidden;
+  background: #f8f8f8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carrusel-container .producto-imagen {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 0px;
+}
+
+/* Placeholder de carga para imágenes */
+.carrusel-container .imagen-loading {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #f5f5f5 25%, #e8e8e8 50%, #f5f5f5 75%);
+  background-size: 200% 100%;
+  animation: carrusel-shimmer 1.5s infinite;
+}
+
+@keyframes carrusel-shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.carrusel-container .carrusel-counter {
+  margin-top: 3rem;
+  color: #8b5a3c;
+  font-weight: 700;
+  font-size: 1.4rem;
+  letter-spacing: 0.05em;
+}
+
+.carrusel-container .loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 4rem;
+}
+
+.carrusel-container .spinner {
+  width: 60px;
+  height: 60px;
+  border: 5px solid rgba(180, 56, 50, 0.2);
+  border-top: 5px solid #b43832;
+  border-radius: 50%;
+  animation: carrusel-spin 1s linear infinite;
+}
+
+@keyframes carrusel-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.carrusel-container .loading p,
+.carrusel-container .no-productos {
+  color: #7a4b2b;
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-align: center;
+  padding: 2rem;
+}
+
+/* Botón panel admin */
+.btn-admin-panel {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: #111;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+}
+
+.btn-admin-panel:hover {
+  background: #000;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.btn-admin-panel:active {
+  transform: translateY(0);
+}
+
+/* ===== PANEL DE CONTROL ADMIN ===== */
+.admin-controls {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-end;
+}
+
+/* Botón volver al panel - NEGRO y ARRIBA */
+.btn-volver-admin {
+  background: #111;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.btn-volver-admin:hover {
+  background: #000;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Toggle para mostrar/ocultar panel */
+.toggle-panel-btn {
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.toggle-panel-btn:hover {
+  background: rgba(0, 0, 0, 0.95);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Panel de configuración */
+.admin-panel-carrusel {
+  position: relative;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  min-width: 280px;
+  animation: slideIn 0.3s ease-out;
+}
+
+/* Botón X para cerrar el panel */
+.admin-panel-carrusel .btn-cerrar-panel {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 4px 8px;
+  line-height: 1;
+  transition: color 0.2s ease;
+}
+
+.admin-panel-carrusel .btn-cerrar-panel:hover {
+  color: #fff;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.admin-panel-carrusel h3 {
+  color: #fff;
+  margin: 0 0 16px 0;
+  font-size: 1rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+
+
+/* Selector de modo */
+.mode-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.mode-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.9rem;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.mode-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.mode-btn.active {
+  background: linear-gradient(135deg, #e74c3c, #c0392b);
+  border-color: #e74c3c;
+  box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+}
+
+.mode-btn-icon {
+  font-size: 1.1rem;
+}
+
+.mode-btn-text {
+  flex: 1;
+}
+
+.mode-btn-check {
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.mode-btn.active .mode-btn-check {
+  opacity: 1;
+}
+
+/* Selector de categorías */
+.category-selector {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.category-selector h4 {
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0 0 10px 0;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.category-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.category-chip {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.8);
+  padding: 6px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.8rem;
+}
+
+.category-chip:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+.category-chip.selected {
+  background: linear-gradient(135deg, #3498db, #2980b9);
+  border-color: #3498db;
+  color: #fff;
+  box-shadow: 0 2px 10px rgba(52, 152, 219, 0.3);
+}
+
+/* Mensaje cuando no hay productos */
+.no-products-message {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  padding: 40px;
+  border-radius: 20px;
+  text-align: center;
+  color: #fff;
+  z-index: 50;
+}
+
+.no-products-message h2 {
+  margin: 0 0 10px 0;
+  font-size: 1.5rem;
+}
+
+.no-products-message p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Dots navigation - debajo del contenido */
+.carrusel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding: clamp(0.5rem, 1.5vh, 1rem) 0;
+  flex-shrink: 0;
+}
+
+.carrusel-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid rgba(180, 56, 50, 0.5);
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.carrusel-dot:hover {
+  border-color: rgba(180, 56, 50, 0.8);
+  background: rgba(180, 56, 50, 0.2);
+}
+
+.carrusel-dot.active {
+  background: #b43832;
+  border-color: #b43832;
+  transform: scale(1.2);
+}
+
+/* Badge destacado - ajustado al contenido */
+.carrusel-destacado {
+  display: inline-block;
+  width: fit-content;
+  background: linear-gradient(135deg, #f39c12, #e67e22);
+  color: white;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-top: 10px;
+  box-shadow: 0 2px 10px rgba(243, 156, 18, 0.3);
+}
+
+/* Indicador de guardado */
+.saving-indicator {
+  color: #ffd700;
+  font-size: 0.8rem;
+  margin: 0 0 10px 0;
+  text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .carrusel-container .local-nombre {
+    font-size: 2.2rem;
+  }
+
+  .carrusel-container .local-subtitulo {
+    font-size: 1rem;
+  }
+
+  .carrusel-container .carrusel-content {
+    height: 500px;
+  }
+
+  .carrusel-container .producto-card {
+    flex-direction: column;
+  }
+
+  .carrusel-container .producto-info {
+    width: 100%;
+    padding: 1.5rem;
+    border-right: none;
+    border-bottom: 4px solid #b43832;
+  }
+
+  .carrusel-container .producto-imagen-container {
+    width: 100%;
+    height: 60%;
+  }
+
+  .carrusel-container .producto-nombre {
+    font-size: 1.8rem;
+  }
+
+  .carrusel-container .producto-descripcion {
+    font-size: 1rem;
+  }
+
+  .carrusel-container .producto-precio {
+    font-size: 2.5rem;
+  }
+
+  .carrusel-container .carrusel-wrapper {
+    padding: 0 1rem;
+  }
+
+  .admin-controls {
+    top: 10px;
+    right: 10px;
+  }
+
+  .admin-panel-carrusel {
+    min-width: 250px;
+    padding: 16px;
+  }
+
+  .mode-btn {
+    padding: 8px 12px;
+    font-size: 0.85rem;
+  }
+}
